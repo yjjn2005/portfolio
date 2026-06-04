@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌳 은퇴 라이프 시스템 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+:root {
+  --bg:     #0A111E;
+  --nav1:   #0F1B2D;
+  --nav2:   #152236;
+  --nav3:   #1C2E46;
+  --nav4:   #243550;
+  --gold:   #C9A84C;
+  --glight: #E8C97A;
+  --teal:   #2EB89A;
+  --tlight: #5CD6BC;
+  --sky:    #4AA8E0;
+  --rose:   #D4706A;
+  --sage:   #6BB88A;
+  --amber:  #D4862A;
+  --purple: #7B6FCC;
+  --pink:   #D4709A;
+  --lav:    #9B7BCC;
+  --text:   #E8EDF5;
+  --muted:  #9AAABF;
+  --dim:    #5A6A80;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Noto Sans KR',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── HEADER ────────────────────────────── */
+.header{
+  background:linear-gradient(160deg,#050c16 0%,#0f1b2d 55%,#071220 100%);
+  border-bottom:1px solid rgba(201,168,76,.25);
+  padding:28px 36px 20px;
+  position:relative;
+  overflow:hidden;
+}
+.header::before{
+  content:'';position:absolute;
+  top:-80px;right:-80px;
+  width:380px;height:380px;
+  background:radial-gradient(circle,rgba(201,168,76,.10) 0%,transparent 70%);
+  pointer-events:none;
+}
+.header::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.h-eyebrow{
+  font-size:11px;letter-spacing:2px;color:var(--muted);
+  text-transform:uppercase;margin-bottom:6px;
+}
+.h-title{
+  font-family:'Noto Serif KR',serif;
+  font-size:clamp(20px,4vw,30px);
+  font-weight:900;color:var(--glight);
+  letter-spacing:.5px;margin-bottom:4px;
+}
+.h-sub{font-size:12px;color:var(--muted);margin-bottom:14px;letter-spacing:.3px;}
+.pill-row{display:flex;flex-wrap:wrap;gap:6px;}
+.pill{
+  padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;
+  border:1px solid;letter-spacing:.3px;
+}
+
+/* ── NAV BUTTONS (엑셀 시트 1:1) ────────── */
+.nav{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  background:var(--nav1);
+  border-bottom:1px solid var(--nav3);
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 4px 24px rgba(0,0,0,.5);
+}
+.nav-btn{
+  padding:0;border:none;
+  background:transparent;
+  cursor:pointer;
+  border-bottom:3px solid transparent;
+  transition:all .22s;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:4px;
+  padding:14px 8px;
+  position:relative;
+  overflow:hidden;
+}
+.nav-btn::before{
+  content:'';position:absolute;inset:0;
+  background:currentColor;opacity:0;
+  transition:opacity .2s;
+}
+.nav-btn:hover::before{opacity:.06;}
+.nav-btn.active::before{opacity:.10;}
+.nav-icon{font-size:20px;line-height:1;}
+.nav-label{
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:11px;font-weight:700;
+  color:var(--muted);letter-spacing:.5px;
+  transition:color .2s;
+}
+.nav-btn.active .nav-label{color:var(--glight);}
+.nav-btn.active{border-bottom-color:var(--gold);}
+.nav-btn[data-sheet="dash"]  {color:var(--gold);}
+.nav-btn[data-sheet="daily"] {color:var(--teal);}
+.nav-btn[data-sheet="weekly"]{color:var(--rose);}
+.nav-btn[data-sheet="monthly"]{color:var(--sky);}
+
+/* ── CONTENT ────────────────────────────── */
+.content{padding:28px 32px;max-width:1140px;margin:0 auto;}
+.pane{display:none;animation:fadeUp .3s ease;}
+.pane.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-title{
+  font-family:'Noto Serif KR',serif;
+  font-size:16px;color:var(--glight);
+  border-left:3px solid var(--gold);
+  padding-left:14px;margin:28px 0 16px;
+  letter-spacing:.5px;
+}
+.sec-title:first-child{margin-top:0;}
+
+/* ── CARDS ────────────────────────────── */
+.card{
+  background:var(--nav2);
+  border:1px solid var(--nav3);
+  border-radius:14px;
+  padding:20px;margin-bottom:18px;
+}
+.card-title{
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:14px;
+}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px;}
+
+/* ── KPI GRID ────────────────────────── */
+.kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px;}
+.kpi{
+  border-radius:12px;padding:14px 12px;text-align:center;
+  border:1px solid rgba(255,255,255,.06);
+}
+.kpi-icon{font-size:22px;margin-bottom:6px;}
+.kpi-val{font-size:22px;font-weight:900;line-height:1;margin-bottom:4px;
+  font-family:'Noto Serif KR',serif;}
+.kpi-label{font-size:10px;color:var(--muted);letter-spacing:.3px;}
+.kpi-sub{font-size:10px;margin-top:4px;opacity:.8;}
+
+/* ── ROUTINE TABLE ────────────────────── */
+.rtable{width:100%;border-collapse:collapse;font-size:12px;}
+.rtable th,.rtable td{
+  padding:9px 12px;border:1px solid var(--nav3);text-align:left;
+  vertical-align:middle;line-height:1.5;
+}
+.rtable th{font-weight:700;font-size:11px;letter-spacing:.5px;}
+.rtable tr:hover td{background:rgba(201,168,76,.04);}
+
+/* ── TIME BLOCKS ─────────────────────── */
+.time-block{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:11px 14px;border-radius:9px;
+  margin-bottom:7px;border:1px solid transparent;
+  transition:transform .15s;
+}
+.time-block:hover{transform:translateX(4px);}
+.t-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.t-time{
+  font-family:'Courier New',monospace;font-size:11px;
+  font-weight:700;color:var(--glight);min-width:108px;flex-shrink:0;
+}
+.t-body{flex:1;}
+.t-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.t-desc{font-size:11px;color:var(--muted);line-height:1.5;}
+.t-tag{margin-left:auto;flex-shrink:0;}
+.tag{
+  display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:10px;font-weight:700;letter-spacing:.3px;
+  border:1px solid transparent;
+}
+
+/* ── WEEK GRID ───────────────────────── */
+.week-grid{
+  display:grid;grid-template-columns:repeat(7,1fr);
+  gap:6px;margin-bottom:18px;
+}
+.week-col{
+  background:var(--nav2);border:1px solid var(--nav3);
+  border-radius:10px;overflow:hidden;
+}
+.week-head{
+  padding:10px 6px;text-align:center;
+  border-bottom:1px solid var(--nav3);
+}
+.week-day{font-size:14px;font-weight:900;}
+.week-sub{font-size:9px;color:var(--muted);margin-top:2px;}
+.week-slot{
+  padding:6px 7px;border-bottom:1px solid rgba(31,48,80,.4);
+  font-size:10px;line-height:1.4;
+}
+
+/* ── CHECKLIST ───────────────────────── */
+.check-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.check-item{
+  font-size:12px;padding:8px 12px;
+  background:var(--nav3);border-radius:8px;
+  display:flex;align-items:center;gap:8px;
+  cursor:pointer;transition:background .15s;
+  user-select:none;
+}
+.check-item:hover{background:var(--nav4);}
+.check-item.done{opacity:.5;text-decoration:line-through;}
+.check-box{
+  width:16px;height:16px;border-radius:4px;
+  border:1.5px solid;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;transition:all .15s;
+}
+
+/* ── MONTHLY TABLE ───────────────────── */
+.m-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px;}
+.m-table th,.m-table td{
+  padding:10px 14px;border:1px solid var(--nav3);text-align:left;
+  vertical-align:top;line-height:1.6;
+}
+.m-table th{font-size:11px;font-weight:700;letter-spacing:.5px;}
+
+/* ── BIWEEKLY CALENDAR ───────────────── */
+.biweek-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;}
+.biweek-card{
+  border-radius:12px;padding:16px;border:1px solid transparent;
+}
+.biweek-header{font-size:13px;font-weight:700;margin-bottom:10px;}
+.biweek-time{font-size:11px;color:var(--muted);margin-bottom:8px;}
+.biweek-item{
+  font-size:12px;padding:5px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:flex-start;gap:8px;
+  line-height:1.5;
+}
+.biweek-item:last-child{border-bottom:none;}
+.biweek-bullet{flex-shrink:0;margin-top:2px;}
+
+/* ── BUCKET LIST ─────────────────────── */
+.bucket-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.bucket-item{
+  display:flex;gap:12px;padding:11px 14px;
+  background:var(--nav3);border-radius:9px;
+  align-items:flex-start;font-size:13px;
+  cursor:pointer;transition:all .15s;border:1px solid transparent;
+}
+.bucket-item:hover{background:var(--nav4);transform:translateX(3px);}
+.bucket-item.done{opacity:.45;}
+.bucket-num{color:var(--gold);font-weight:900;font-size:15px;min-width:22px;flex-shrink:0;}
+.bucket-check{margin-left:auto;font-size:16px;flex-shrink:0;}
+
+/* ── SCIENCE BOXES ───────────────────── */
+.sci-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.sci-box{
+  background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);
+  border-radius:10px;padding:14px;
+}
+.sci-src{color:var(--gold);font-weight:700;font-size:12px;margin-bottom:6px;}
+.sci-desc{font-size:12px;color:var(--muted);line-height:1.7;}
+
+/* ── STATS BAR ───────────────────────── */
+.stat-row{
+  display:flex;align-items:center;gap:12px;
+  padding:9px 0;border-bottom:1px solid var(--nav3);
+}
+.stat-row:last-child{border-bottom:none;}
+.stat-label{font-size:12px;min-width:110px;flex-shrink:0;}
+.stat-bar-wrap{flex:1;background:var(--nav4);border-radius:4px;height:6px;overflow:hidden;}
+.stat-bar-fill{height:100%;border-radius:4px;transition:width .8s ease;}
+.stat-pct{font-size:11px;color:var(--muted);min-width:38px;text-align:right;}
+.stat-h{font-weight:700;min-width:36px;text-align:right;font-size:12px;}
+
+/* ── ROUTINE SWITCHER ────────────────── */
+.routine-tabs{display:flex;gap:8px;margin-bottom:16px;}
+.r-tab{
+  padding:9px 22px;border-radius:22px;border:1px solid var(--nav3);
+  background:transparent;color:var(--muted);cursor:pointer;
+  font-size:12px;font-weight:700;transition:all .2s;
+  font-family:'Noto Sans KR',sans-serif;
+}
+.r-tab.active{color:var(--nav1);border-color:transparent;}
+
+/* ── TRAVEL TABLE ────────────────────── */
+.travel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px;}
+.travel-card{border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,.06);}
+.travel-q{font-size:11px;font-weight:700;margin-bottom:6px;letter-spacing:.5px;}
+.travel-dest{font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.travel-tag{font-size:10px;color:var(--muted);}
+.travel-badge{
+  display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:10px;font-weight:700;margin-top:8px;
+}
+
+/* ── RESPONSIVE ──────────────────────── */
+@media(max-width:760px){
+  .content{padding:18px 14px;}
+  .nav{grid-template-columns:repeat(4,1fr);}
+  .nav-label{font-size:9px;}
+  .kpi-grid{grid-template-columns:repeat(3,1fr);}
+  .g2,.g3,.g4{grid-template-columns:1fr;}
+  .week-grid{grid-template-columns:repeat(3,1fr);}
+  .check-grid,.biweek-grid,.bucket-grid,.sci-grid{grid-template-columns:1fr;}
+  .travel-grid{grid-template-columns:1fr 1fr;}
+  .rtable{font-size:10px;}
+  .rtable th,.rtable td{padding:6px 8px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ────────────────────────────── -->
+<div class="header">
+  <div class="h-eyebrow">RETIREMENT LIFE SYSTEM · 2026 OPTIMIZED</div>
+  <div class="h-title">🌳 은퇴 라이프 밸런스 대시보드</div>
+  <div class="h-sub">건강 · 재무 · 여가 · 배움 · 사회공헌 · 손주 · 가족의 다차원적 시간 분배 시스템</div>
+  <div class="pill-row">
+    <span class="pill" style="color:var(--teal);border-color:rgba(46,184,154,.4);background:rgba(46,184,154,.1)">취침 23:00 · 기상 06:00</span>
+    <span class="pill" style="color:var(--gold);border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.1)">주식 집중 2h</span>
+    <span class="pill" style="color:var(--rose);border-color:rgba(212,112,106,.4);background:rgba(212,112,106,.1)">배드민턴 화·목·토 20:00</span>
+    <span class="pill" style="color:var(--sage);border-color:rgba(107,184,138,.4);background:rgba(107,184,138,.1)">골프 주중 2회</span>
+    <span class="pill" style="color:var(--pink);border-color:rgba(212,112,154,.4);background:rgba(212,112,154,.1)">👶 손주 격주 주말</span>
+    <span class="pill" style="color:var(--lav);border-color:rgba(155,123,204,.4);background:rgba(155,123,204,.1)">🍽 가족식사 2주 1회</span>
+  </div>
+</div>
+
+<!-- ── NAV = 엑셀 시트 1:1 ─────────────── -->
+<nav class="nav">
+  <button class="nav-btn active" data-sheet="dash" onclick="show('dash',this)">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-label">대시보드</span>
+  </button>
+  <button class="nav-btn" data-sheet="daily" onclick="show('daily',this)">
+    <span class="nav-icon">📅</span>
+    <span class="nav-label">일간 루틴</span>
+  </button>
+  <button class="nav-btn" data-sheet="weekly" onclick="show('weekly',this)">
+    <span class="nav-icon">🗓</span>
+    <span class="nav-label">주간 매트릭스</span>
+  </button>
+  <button class="nav-btn" data-sheet="monthly" onclick="show('monthly',this)">
+    <span class="nav-icon">📆</span>
+    <span class="nav-label">월간·연간 계획</span>
+  </button>
+</nav>
+
+<div class="content">
+
+<!-- ══════════════════════════════════════
+     🏠 SHEET 1 · 대시보드
+══════════════════════════════════════ -->
+<div id="dash" class="pane active">
+
+  <div class="sec-title">핵심 일과 지표 KPI</div>
+  <div class="kpi-grid">
+    <div class="kpi" style="background:rgba(46,184,154,.12);border-color:rgba(46,184,154,.2)">
+      <div class="kpi-icon">😴</div>
+      <div class="kpi-val" style="color:var(--tlight)">7h</div>
+      <div class="kpi-label">수 면</div>
+      <div class="kpi-sub" style="color:var(--teal)">23:00 ~ 06:00</div>
+    </div>
+    <div class="kpi" style="background:rgba(46,184,154,.12);border-color:rgba(46,184,154,.2)">
+      <div class="kpi-icon">🏃</div>
+      <div class="kpi-val" style="color:var(--tlight)">3.5h</div>
+      <div class="kpi-label">건강·운동</div>
+      <div class="kpi-sub" style="color:var(--teal)">스트레칭+걷기+배드민턴</div>
+    </div>
+    <div class="kpi" style="background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.2)">
+      <div class="kpi-icon">📈</div>
+      <div class="kpi-val" style="color:var(--glight)">2h</div>
+      <div class="kpi-label">주식·투자</div>
+      <div class="kpi-sub" style="color:var(--gold)">09:00 ~ 11:00</div>
+    </div>
+    <div class="kpi" style="background:rgba(107,184,138,.12);border-color:rgba(107,184,138,.2)">
+      <div class="kpi-icon">⛳</div>
+      <div class="kpi-val" style="color:#8ed6a8">4.5h</div>
+      <div class="kpi-label">골 프</div>
+      <div class="kpi-sub" style="color:var(--sage)">주중 2회 라운딩</div>
+    </div>
+    <div class="kpi" style="background:rgba(107,184,138,.12);border-color:rgba(107,184,138,.2)">
+      <div class="kpi-icon">🌿</div>
+      <div class="kpi-val" style="color:#8ed6a8">4h</div>
+      <div class="kpi-label">텃밭·영농</div>
+      <div class="kpi-sub" style="color:var(--sage)">13:30 ~ 17:30</div>
+    </div>
+    <div class="kpi" style="background:rgba(74,168,224,.12);border-color:rgba(74,168,224,.2)">
+      <div class="kpi-icon">📚</div>
+      <div class="kpi-val" style="color:#7dcbf5">1.5h</div>
+      <div class="kpi-label">배우기</div>
+      <div class="kpi-sub" style="color:var(--sky)">11:00 ~ 12:30</div>
+    </div>
+    <div class="kpi" style="background:rgba(212,112,106,.12);border-color:rgba(212,112,106,.2)">
+      <div class="kpi-icon">🏸</div>
+      <div class="kpi-val" style="color:#e89e9a">2h</div>
+      <div class="kpi-label">배드민턴</div>
+      <div class="kpi-sub" style="color:var(--rose)">화·목·토 20:00</div>
+    </div>
+    <div class="kpi" style="background:rgba(212,112,154,.12);border-color:rgba(212,112,154,.2)">
+      <div class="kpi-icon">👶</div>
+      <div class="kpi-val" style="color:#e89ebe">격주</div>
+      <div class="kpi-label">손주 보기</div>
+      <div class="kpi-sub" style="color:var(--pink)">주말 토·일 집중</div>
+    </div>
+    <div class="kpi" style="background:rgba(155,123,204,.12);border-color:rgba(155,123,204,.2)">
+      <div class="kpi-icon">🍽</div>
+      <div class="kpi-val" style="color:#bca8e8">2주1회</div>
+      <div class="kpi-label">가족 식사</div>
+      <div class="kpi-sub" style="color:var(--lav)">격주 일요일</div>
+    </div>
+    <div class="kpi" style="background:rgba(212,134,42,.12);border-color:rgba(212,134,42,.2)">
+      <div class="kpi-icon">🙏</div>
+      <div class="kpi-val" style="color:#e8a870">2h</div>
+      <div class="kpi-label">봉사·사교</div>
+      <div class="kpi-sub" style="color:var(--amber)">주 2~3회</div>
+    </div>
+  </div>
+
+  <div class="sec-title">3-Routine 설계 개요 (엑셀 대시보드 시트)</div>
+  <div class="card">
+    <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+      <span style="padding:6px 16px;background:rgba(46,184,154,.2);border:1px solid var(--teal);border-radius:20px;font-size:12px;font-weight:700;color:var(--teal)">Routine A · 평일 골프無</span>
+      <span style="padding:6px 16px;background:rgba(107,184,138,.2);border:1px solid var(--sage);border-radius:20px;font-size:12px;font-weight:700;color:var(--sage)">Routine B · 골프 Day</span>
+      <span style="padding:6px 16px;background:rgba(212,134,42,.2);border:1px solid var(--amber);border-radius:20px;font-size:12px;font-weight:700;color:var(--amber)">Routine C · 일요일 교회</span>
+    </div>
+    <div style="overflow-x:auto;">
+    <table class="rtable">
+      <thead>
+        <tr>
+          <th style="background:var(--nav4);color:var(--glight);min-width:100px">시간대</th>
+          <th style="background:rgba(46,184,154,.25);color:var(--tlight)">Routine A (평일 골프無)</th>
+          <th style="background:rgba(107,184,138,.25);color:#8ed6a8">Routine B (골프 Day)</th>
+          <th style="background:rgba(212,134,42,.25);color:#e8a870">Routine C (일요일)</th>
+          <th style="background:rgba(201,168,76,.2);color:var(--glight)">공통</th>
+        </tr>
+      </thead>
+      <tbody id="routine-tbody"></tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="sec-title">주간 시간 배분</div>
+  <div class="card">
+    <div id="stat-bars"></div>
+  </div>
+
+  <div class="sec-title">👶 격주 손주·가족식사 패턴</div>
+  <div class="biweek-grid">
+    <div class="biweek-card" style="background:rgba(212,112,154,.10);border-color:rgba(212,112,154,.3)">
+      <div class="biweek-header" style="color:var(--pink)">🌟 홀수 주 주말 (손주 + 가족대식사)</div>
+      <div class="biweek-time" style="color:var(--muted)">토요일 10:00~17:00 + 일요일 교회 후 12:30~</div>
+      <div class="biweek-item"><span class="biweek-bullet">👶</span><span><b>토요일:</b> 손주 맞이·텃밭 체험·간식 만들기·산책 (배드민턴 전 귀가)</span></div>
+      <div class="biweek-item"><span class="biweek-bullet">🍽</span><span><b>일요일:</b> 교회 후 전 가족 대식사 → 손주 오후 케어 → 4시 귀가</span></div>
+      <div class="biweek-item"><span class="biweek-bullet">✨</span><span>메뉴 투표로 결정, 외식·집밥 교대</span></div>
+    </div>
+    <div class="biweek-card" style="background:rgba(155,123,204,.08);border-color:rgba(155,123,204,.2)">
+      <div class="biweek-header" style="color:var(--lav)">📅 짝수 주 주말 (개인 루틴 유지)</div>
+      <div class="biweek-time" style="color:var(--muted)">토요일 자유 + 일요일 교회 후 여가</div>
+      <div class="biweek-item"><span class="biweek-bullet">🌿</span><span><b>토요일:</b> 텃밭 집중 관리 + 배드민턴 20:00</span></div>
+      <div class="biweek-item"><span class="biweek-bullet">⛪</span><span><b>일요일:</b> 교회 → 개인 여가·독서·성경 묵상</span></div>
+      <div class="biweek-item"><span class="biweek-bullet">🏌️</span><span>골프 / 배드민턴 / 배우기 자유 배치</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     📅 SHEET 2 · 일간 루틴
+══════════════════════════════════════ -->
+<div id="daily" class="pane">
+
+  <div class="sec-title">일간 루틴 상세 (Routine 선택)</div>
+  <div class="routine-tabs">
+    <button class="r-tab active" style="background:var(--teal);color:var(--nav1)" onclick="switchRoutine('A',this)">Routine A — 평일 골프無</button>
+    <button class="r-tab" onclick="switchRoutine('B',this)">Routine B — 골프 Day</button>
+    <button class="r-tab" onclick="switchRoutine('C',this)">Routine C — 일요일 교회</button>
+  </div>
+
+  <div class="card" style="margin-bottom:16px;padding:12px 16px;">
+    <div style="display:flex;gap:24px;flex-wrap:wrap;font-size:12px;">
+      <div id="routine-meta-A">⚡ PEI ≈ 5.5 &nbsp;|&nbsp; 화·수·목·금·일부 토 적용 &nbsp;|&nbsp; <span style="color:var(--teal)">중강도</span></div>
+      <div id="routine-meta-B" style="display:none">⚡ PEI ≈ 7.0 &nbsp;|&nbsp; 주중 2회 (월·수 or 수·금) &nbsp;|&nbsp; <span style="color:var(--sage)">중고강도</span></div>
+      <div id="routine-meta-C" style="display:none">⚡ PEI ≈ 3.5 &nbsp;|&nbsp; 매주 일요일 적용 &nbsp;|&nbsp; <span style="color:var(--amber)">저강도 / 영성 중심</span></div>
+    </div>
+  </div>
+
+  <div id="daily-blocks"></div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     🗓 SHEET 3 · 주간 매트릭스
+══════════════════════════════════════ -->
+<div id="weekly" class="pane">
+
+  <div class="sec-title">주간 스케줄 매트릭스 (월~일)</div>
+  <div class="week-grid" id="week-grid"></div>
+
+  <div class="g2">
+    <div class="card" style="border-color:rgba(107,184,138,.25)">
+      <div class="card-title" style="color:var(--sage)">🏌️ 골프 배치 전략</div>
+      <div style="font-size:12px;line-height:2;color:var(--muted)">
+        <div>✅ <b style="color:var(--text)">추천:</b> 월+수 또는 수+금</div>
+        <div>✅ 배드민턴(화·목·토)과 겹치지 않는 날</div>
+        <div>✅ 오전 출발 → 오후 귀가 → 텃밭or여가</div>
+        <div>✅ 주 2회 × 4.5h = 주 9시간 활동량</div>
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(212,112,154,.25)">
+      <div class="card-title" style="color:var(--pink)">👶 손주 보기 주간 배치</div>
+      <div style="font-size:12px;line-height:2;color:var(--muted)">
+        <div>✅ <b style="color:var(--text)">홀수주 토:</b> 손주 맞이 10:00~17:00</div>
+        <div>✅ <b style="color:var(--text)">홀수주 일:</b> 교회 후 가족 대식사</div>
+        <div>✅ 배드민턴 전(토 20:00) 반드시 귀가</div>
+        <div>✅ 짝수 주말: 기본 루틴 유지</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-title">주간 체크리스트</div>
+  <div class="card">
+    <div class="check-grid" id="check-grid"></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     📆 SHEET 4 · 월간·연간 계획
+══════════════════════════════════════ -->
+<div id="monthly" class="pane">
+
+  <div class="sec-title">격주 캘린더 (손주·가족식사)</div>
+  <div class="biweek-grid">
+    <div class="biweek-card" style="background:rgba(212,112,154,.10);border-color:rgba(212,112,154,.3)">
+      <div class="biweek-header" style="color:var(--pink)">홀수 주 일요일 — 손주 + 가족 대식사</div>
+      <div class="biweek-item"><span>🕐</span><span>교회 예배 → 12:30 전 가족 집결</span></div>
+      <div class="biweek-item"><span>🍽</span><span>외식 or 집밥 (메뉴 투표) · 전 가족 필참</span></div>
+      <div class="biweek-item"><span>👶</span><span>식후 손주 오후 케어 · 마당 놀이 · 16:00 귀가</span></div>
+    </div>
+    <div class="biweek-card" style="background:rgba(155,123,204,.08);border-color:rgba(155,123,204,.2)">
+      <div class="biweek-header" style="color:var(--lav)">짝수 주 일요일 — 기본 일요일 루틴</div>
+      <div class="biweek-item"><span>⛪</span><span>교회 예배 · 성도 교제 · 봉사</span></div>
+      <div class="biweek-item"><span>🌿</span><span>텃밭 관리 · 가족 가벼운 연락</span></div>
+      <div class="biweek-item"><span>📖</span><span>독서 · 성경 묵상 · 주간 반성 일기</span></div>
+    </div>
+  </div>
+
+  <div class="sec-title">월간 4주 테마 계획</div>
+  <div class="card">
+    <div style="overflow-x:auto">
+    <table class="m-table">
+      <thead>
+        <tr>
+          <th style="background:rgba(201,168,76,.2);color:var(--glight)">주차</th>
+          <th style="background:rgba(201,168,76,.2);color:var(--glight)">테마</th>
+          <th style="background:rgba(46,184,154,.15);color:var(--tlight)">건강·운동</th>
+          <th style="background:rgba(201,168,76,.15);color:var(--glight)">재무·주식</th>
+          <th style="background:rgba(212,112,106,.15);color:#e89e9a">배움·봉사</th>
+          <th style="background:rgba(107,184,138,.15);color:#8ed6a8">영농·자연</th>
+          <th style="background:rgba(212,112,154,.15);color:var(--pink)">가족·손주</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tag" style="background:rgba(201,168,76,.2);color:var(--gold);border-color:rgba(201,168,76,.4)">1주차</span></td>
+          <td style="color:var(--sky);font-weight:700">루틴 정착</td>
+          <td>스트레칭 7회 · 걷기 7h · 배드민턴 3회</td>
+          <td>주식 10h · 종목 스크리닝</td>
+          <td>배우기 5회 · 봉사 1회</td>
+          <td>텃밭 점검 · 월간 계획</td>
+          <td>기본 루틴 유지</td>
+        </tr>
+        <tr style="background:rgba(255,255,255,.02)">
+          <td><span class="tag" style="background:rgba(74,168,224,.2);color:var(--sky);border-color:rgba(74,168,224,.4)">2주차</span></td>
+          <td style="color:var(--sky);font-weight:700">배움 강화</td>
+          <td>골프 2회 · 걷기 7h · 텃밭 집중</td>
+          <td>주식 10h · 수익률 점검</td>
+          <td>강의 1과목 수료 · 봉사 1회</td>
+          <td>계절 영농 작업</td>
+          <td style="color:var(--pink);font-weight:700">👶 손주 보기 + 🍽 가족 대식사</td>
+        </tr>
+        <tr>
+          <td><span class="tag" style="background:rgba(212,112,106,.2);color:var(--rose);border-color:rgba(212,112,106,.4)">3주차</span></td>
+          <td style="color:var(--sky);font-weight:700">봉사·사교</td>
+          <td>배드민턴 3회 · 걷기 7h · 골프 2회</td>
+          <td>주식 10h · 섹터 리뷰</td>
+          <td>지역봉사 2회 · 동호회 교류</td>
+          <td>호두·대추 성장 점검</td>
+          <td>기본 루틴 유지</td>
+        </tr>
+        <tr style="background:rgba(255,255,255,.02)">
+          <td><span class="tag" style="background:rgba(107,184,138,.2);color:var(--sage);border-color:rgba(107,184,138,.4)">4주차</span></td>
+          <td style="color:var(--sky);font-weight:700">월간 점검</td>
+          <td>모든 운동 루틴 유지</td>
+          <td>포트폴리오 월간 결산</td>
+          <td>다음달 계획 수립</td>
+          <td>수확 준비 · 토양 관리</td>
+          <td style="color:var(--pink);font-weight:700">👶 손주 보기 + 🍽 가족 대식사</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="sec-title">연간 4분기 계획 & 영농 캘린더</div>
+  <div class="g2" id="quarter-grid"></div>
+
+  <div class="sec-title">✈️ 분기별 여행 계획 (연 4회 · 1회 1주일)</div>
+  <div class="travel-grid" id="travel-grid"></div>
+
+  <div class="sec-title">🏆 연간 버킷리스트 10선</div>
+  <div class="bucket-grid" id="bucket-grid"></div>
+
+  <div class="sec-title">🔬 과학적 근거</div>
+  <div class="sci-grid">
+    <div class="sci-box">
+      <div class="sci-src">📌 하버드 75년 종단연구</div>
+      <div class="sci-desc">사회적 연결(봉사·사교·손주)이 장수 1위 요인. 고독은 흡연 15개비와 동일 위험도. 손주 정기 만남이 노인 우울 40% 감소.</div>
+    </div>
+    <div class="sci-box">
+      <div class="sci-src">📌 WHO 신체활동 권고안</div>
+      <div class="sci-desc">65세↑ 주 150분 중강도 운동 권고 → 이 플랜 주 300분+ 달성 (권고의 2배 초과).</div>
+    </div>
+    <div class="sci-box">
+      <div class="sci-src">📌 일본 블루존 연구</div>
+      <div class="sci-desc">목적의식(이키가이) 보유 은퇴자 평균 7년 추가 생존. 텃밭·봉사·손주 돌봄이 이키가이 역할.</div>
+    </div>
+    <div class="sci-box">
+      <div class="sci-src">📌 서울대 노년뇌과학</div>
+      <div class="sci-desc">규칙적 취침·기상 패턴이 인지기능 저하 속도 40% 감소. 23:00 취침 고수가 핵심.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<script>
+/* ══════════════════════════════════════
+   DATA
+══════════════════════════════════════ */
+const ROUTINE_ROWS = [
+  ["06:00–07:00","스트레칭 & 기상 루틴\n척추 정렬·관절 가동·심부 온도 상승","스트레칭 & 기상 루틴\n골프 전 관절 워밍업 겸용","스트레칭 & 기상 루틴\n교회 준비 전 몸 깨우기","✅"],
+  ["07:00–08:00","아침식사 & 수분·하루계획\n고단백 식단·우선순위 3가지 설정","아침식사 & 에너지 비축\n골프 출발 전 충분한 영양 섭취","아침식사 & 교회 준비\n가족과 함께·단정한 복장","✅"],
+  ["08:00–09:00","🚶 야외 걷기 1시간\n햇빛 비타민D·멜라토닌·심폐 기능","🚶 가벼운 걷기 30분\n골프 전 관절 워밍업 수준","⛪ 교회 이동 & 예배 준비\n차량·찬양·예배 참여","일부"],
+  ["09:00–11:00","📈 주식 집중 2시간\n개장·거시지표 분석·포트폴리오 관리","📈 주식 집중 2시간\n골프 출발 전 장 점검·매매 마감","⛪ 교회 예배 & 말씀\n설교·성가대·신앙공동체","일부"],
+  ["11:00–12:30","📚 배우기 1.5시간\n온라인 강의·영어·AI·투자·신앙 집중","🏌️ 골프 클럽하우스 도착\n코스 전략·동반자 워밍업","⛪ 교회 봉사 & 성도 교제\n식사봉사·소그룹·지역봉사","—"],
+  ["12:30–13:30","점심식사 & 소화 휴식\n채소 위주·15분 산책","🏌️ 골프 전반 9홀\n(점심은 골프장 식음)","🍽 가족 대식사 (격주)\n전 가족 외식 or 집밥","일부"],
+  ["13:30–17:30","🌿 텃밭·호두·대추 4시간\n전정·적심·병해충·수확 준비","🏌️ 후반 9홀 + 마무리\n클럽하우스 휴식·귀가","🌿 텃밭 + 👶 손주 놀이(격주)\n마당 체험·곤충 탐험·산책","—"],
+  ["17:30–18:30","🏠 저녁준비 & 가족시간\n간단 가사·가족 대화","🏠 귀가·회복 스트레칭\n골프 후 근육 이완·샤워","🏠 저녁준비 & 가족영화\n한 주 마무리·감사 나눔","✅"],
+  ["18:30–20:00","저녁식사 & 산책\n배드민턴 날: 가볍게·이동준비","저녁식사 & 산책\n골프 후 충분한 회복","저녁식사 & 주간 반성\n감사일기·다음주 계획 메모","✅"],
+  ["20:00–22:00","🏸 배드민턴 (화·목·토)\n전신 심폐·사교·민첩성 훈련\n월·수·금: 독서·학습·명상","📖 독서 & 여가\n하루 마무리·TV·명상","📖 독서·성경·내주 계획\n(격주 손주날: 일찍 취침)","—"],
+  ["22:30–23:00","🧘 이완 스트레칭 30분\n체액림프·부종 예방·숙면 준비","🧘 이완 스트레칭 30분\n골프 근육 완전 이완","🧘 이완 스트레칭 30분\n한 주 마무리·감사기도","✅"],
+  ["23:00","😴 취침 — 목표 7시간","😴 취침 — 목표 7시간","😴 취침 — 목표 7시간","✅"],
+];
+
+const DAILY = [
+  {t:"06:00–07:00", A:{title:"🤸 전신 스트레칭 & 기상 루틴",desc:"척추 정렬·관절 가동 범위 확장·심부 온도 상승으로 상해 예방"},B:{title:"🤸 전신 스트레칭 & 기상 루틴",desc:"골프 전 관절 워밍업·몸 깨우기·하루 에너지 세팅"},C:{title:"🤸 전신 스트레칭 & 기상 루틴",desc:"교회 준비 전 몸 깨우기·심신 안정·감사 기도"},tag:"🏃 신체활성화",color:"var(--teal)",star:"★★★★★"},
+  {t:"07:00–08:00", A:{title:"☕ 아침식사 & 수분 섭취",desc:"고단백 식단·수분 500ml·하루 우선순위 3가지 설정"},B:{title:"☕ 아침식사 & 골프 에너지 비축",desc:"탄수화물+단백질 균형·골프 출발 전 충분한 영양 섭취"},C:{title:"☕ 아침식사 & 교회 준비",desc:"가족과 함께 식사·단정한 복장 준비·말씀 묵상"},tag:"🍳 영양·루틴",color:"var(--sky)",star:"★★★★☆"},
+  {t:"08:00–09:00", A:{title:"🚶 야외 걷기 1시간",desc:"인터벌 속보·햇빛 비타민D 합성·멜라토닌 조절·심폐 기능 강화"},B:{title:"🚶 가벼운 워밍업 걷기 30분",desc:"골프 전 관절 이완 목적·무리하지 않는 수준"},C:{title:"⛪ 교회 이동 & 예배 준비",desc:"차량 이동·찬양 준비·예배 참여·신앙 공동체"},tag:"🏃 기초체력",color:"var(--teal)",star:"★★★★★"},
+  {t:"09:00–11:00", A:{title:"📈 주식시장 집중 2시간",desc:"한국거래소 개장·거시지표 분석·포트폴리오 관리·고강도 두뇌 트레이닝"},B:{title:"📈 주식 점검 & 출발 준비",desc:"골프 출발 전 장 점검·긴급 매매 마감·이동"},C:{title:"⛪ 교회 예배 & 말씀",desc:"설교 경청·성가대·신앙공동체 교제·말씀 묵상"},tag:"💰 재무·투자",color:"var(--gold)",star:"★★★★★"},
+  {t:"11:00–12:30", A:{title:"📚 배우기 — 평생교육 1.5h",desc:"영어·AI·투자론·신앙 중 1과목 집중 / 50플러스 온라인 강의·원예 자격 이론"},B:{title:"🏌️ 골프 클럽하우스 도착",desc:"코스 전략 수립·동반자 인사·워밍업·퍼팅 연습"},C:{title:"⛪ 교회 봉사 & 교제",desc:"식사 봉사·소그룹 활동·지역 봉사팀·성도 교제"},tag:"📚 지적탐구",color:"var(--sky)",star:"★★★★☆"},
+  {t:"12:30–13:30", A:{title:"🍱 점심식사 & 소화 휴식",desc:"채소 위주 식단·과식 금지·식후 15분 산책·낮잠(선택)"},B:{title:"🏌️ 전반 9홀 진행",desc:"골프장 식음·코스 집중·동반자와 소통"},C:{title:"🍽 가족 대식사 (격주)",desc:"전 가족 외식 or 집밥·메뉴 투표·손주 동반·대화"},tag:"🍳 영양·휴식",color:"var(--amber)",star:"★★★☆☆"},
+  {t:"13:30–17:30", A:{title:"🌿 텃밭·호두나무·대추나무 4h",desc:"계절별 전정·적심·들묵새 초생재배·멀칭·병해충 예찰·친환경 물 관리"},B:{title:"🏌️ 후반 9홀 + 마무리",desc:"18홀 완주·클럽하우스 휴식·동반자와 식사·귀가"},C:{title:"🌿 텃밭 + 👶 손주 놀이 (격주)",desc:"텃밭 체험·곤충 탐험·간식 만들기·마당 산책 / 비격주: 가족 여가"},tag:"🌿 영농·치유",color:"var(--sage)",star:"★★★★☆"},
+  {t:"17:30–18:30", A:{title:"🏠 저녁준비 & 가족시간",desc:"간단 가사·가족과 대화·하루 나눔·배드민턴 날 가볍게"},B:{title:"🏠 귀가 & 회복 스트레칭",desc:"골프 후 근육 이완·폼롤러·샤워·충분한 수분"},C:{title:"🏠 저녁준비 & 가족영화",desc:"한 주 마무리·감사 나눔·가족 소통"},tag:"👨‍👩‍👧 가족",color:"var(--amber)",star:"★★★☆☆"},
+  {t:"18:30–20:00", A:{title:"저녁식사 & 산책",desc:"배드민턴 날: 가볍게 식사·20:00 이동 준비 / 기타: 여유로운 저녁"},B:{title:"저녁식사 & 회복 산책",desc:"골프 후 충분한 회복·수분 보충·근육 피로 해소"},C:{title:"저녁식사 & 주간 반성",desc:"감사일기 작성·다음 주 계획 메모·성경 읽기"},tag:"🏃 건강·가족",color:"var(--teal)",star:"★★★★☆"},
+  {t:"20:00–22:00", A:{title:"🏸 배드민턴 (화·목·토) / 여가",desc:"클럽 동호인 전신 심폐 게임·사교·민첩성 훈련\n월·수·금: 독서·학습·TV·명상"},B:{title:"📖 독서 & 여가",desc:"하루 마무리·내일 계획·TV·명상·지인 연락"},C:{title:"📖 독서·성경·내주 계획",desc:"조용한 마무리·성경 묵상·감사기도\n격주 손주날: 일찍 취침"},tag:"⚡ 여가·스포츠",color:"var(--rose)",star:"★★★★★"},
+  {t:"22:30–23:00", A:{title:"🧘 취침 전 이완 스트레칭 30분",desc:"체액 림프순환·다리 부종 예방·새벽 야간뇨 억제·숙면 루틴"},B:{title:"🧘 이완 스트레칭 30분",desc:"골프 근육 완전 이완·어깨·허리·하체 집중 스트레칭"},C:{title:"🧘 이완 스트레칭 30분",desc:"한 주 마무리·감사기도·내일 준비"},tag:"🏃 생체안정",color:"var(--teal)",star:"★★★★★"},
+  {t:"23:00", A:{title:"😴 취침 — 목표 7시간 숙면",desc:"11PM 취침 고수·스마트폰 금지·암막 커튼"},B:{title:"😴 취침 — 목표 7시간 숙면",desc:"골프 피로 회복 숙면·충분한 휴식"},C:{title:"😴 취침 — 목표 7시간 숙면",desc:"한 주 완성·평안한 숙면"},tag:"😴 수면",color:"var(--nav3)",star:"★★★★★"},
+];
+
+const WEEK_DATA = [
+  {d:"월",sub:"MON",sp:false,badge:"⛳",bcolor:"var(--sage)",slots:[
+    {t:"스트레칭",c:"var(--teal)"},{t:"아침·계획수립",c:""},{t:"📈 주식 2h",c:"var(--gold)"},
+    {t:"🚶 걷기 1h",c:"var(--teal)"},{t:"📚 배우기",c:"var(--sky)"},{t:"🏌️ 골프",c:"var(--sage)"},
+    {t:"텃밭 관리",c:"var(--sage)"},{t:"저녁식사",c:""},{t:"독서·여가",c:""},{t:"🧘 스트레칭",c:"var(--teal)"},
+  ]},
+  {d:"화",sub:"TUE",sp:true,badge:"🏸",bcolor:"var(--rose)",slots:[
+    {t:"스트레칭",c:"var(--teal)"},{t:"아침식사",c:""},{t:"🚶 걷기 1h",c:"var(--teal)"},
+    {t:"📈 주식 2h",c:"var(--gold)"},{t:"📚 배우기",c:"var(--sky)"},{t:"텃밭 관리",c:"var(--sage)"},
+    {t:"저녁·이동",c:""},{t:"🏸 배드민턴 20:00",c:"var(--rose)"},{t:"🧘 스트레칭",c:"var(--teal)"},
+  ]},
+  {d:"수",sub:"WED",sp:false,badge:"⛳",bcolor:"var(--sage)",slots:[
+    {t:"스트레칭",c:"var(--teal)"},{t:"아침식사",c:""},{t:"📈 주식 2h",c:"var(--gold)"},
+    {t:"🏌️ 골프 출발",c:"var(--sage)"},{t:"🏌️ 골프 라운딩",c:"var(--sage)"},{t:"귀가·회복",c:""},
+    {t:"저녁식사",c:""},{t:"독서·여가",c:""},{t:"🧘 스트레칭",c:"var(--teal)"},
+  ]},
+  {d:"목",sub:"THU",sp:true,badge:"🏸",bcolor:"var(--rose)",slots:[
+    {t:"스트레칭",c:"var(--teal)"},{t:"아침식사",c:""},{t:"🚶 걷기 1h",c:"var(--teal)"},
+    {t:"📈 주식 2h",c:"var(--gold)"},{t:"📚 배우기",c:"var(--sky)"},{t:"🙏 봉사",c:"var(--rose)"},
+    {t:"저녁·이동",c:""},{t:"🏸 배드민턴 20:00",c:"var(--rose)"},{t:"🧘 스트레칭",c:"var(--teal)"},
+  ]},
+  {d:"금",sub:"FRI",sp:false,badge:"⛳",bcolor:"var(--sage)",slots:[
+    {t:"스트레칭",c:"var(--teal)"},{t:"아침식사",c:""},{t:"📈 주식 2h",c:"var(--gold)"},
+    {t:"🚶 걷기 1h",c:"var(--teal)"},{t:"🏌️ 골프",c:"var(--sage)"},{t:"텃밭 관리",c:"var(--sage)"},
+    {t:"저녁식사",c:""},{t:"자유·여가",c:""},{t:"🧘 스트레칭",c:"var(--teal)"},
+  ]},
+  {d:"토",sub:"SAT",sp:true,badge:"🏸",bcolor:"var(--rose)",slots:[
+    {t:"스트레칭",c:"var(--teal)"},{t:"아침식사",c:""},
+    {t:"🌿 텃밭 집중",c:"var(--sage)"},{t:"👶 손주 보기(격주)",c:"var(--pink)"},
+    {t:"저녁 준비",c:""},{t:"🏸 배드민턴 20:00",c:"var(--rose)"},{t:"🧘 스트레칭",c:"var(--teal)"},
+  ]},
+  {d:"일",sub:"SUN",sp:false,badge:"⛪",bcolor:"var(--amber)",slots:[
+    {t:"스트레칭",c:"var(--teal)"},{t:"⛪ 교회 예배",c:"var(--amber)"},{t:"⛪ 봉사·교제",c:"var(--amber)"},
+    {t:"🍽 가족식사(격주)",c:"var(--lav)"},{t:"👶 손주·텃밭(격주)",c:"var(--pink)"},
+    {t:"개인 여가·독서",c:""},{t:"🧘 스트레칭",c:"var(--teal)"},
+  ]},
+];
+
+const CHECKS = [
+  {label:"🏃 걷기 7회 완료",color:"var(--teal)"},
+  {label:"🤸 스트레칭 매일 2회",color:"var(--teal)"},
+  {label:"🏸 배드민턴 3회(화·목·토)",color:"var(--rose)"},
+  {label:"🏌️ 골프 2회(주중)",color:"var(--sage)"},
+  {label:"📈 주식 5일×2h",color:"var(--gold)"},
+  {label:"📊 포트폴리오 점검",color:"var(--gold)"},
+  {label:"📚 배우기 5회×1.5h",color:"var(--sky)"},
+  {label:"📖 독서 주 3회↑",color:"var(--sky)"},
+  {label:"🌿 텃밭 관리 5회",color:"var(--sage)"},
+  {label:"🙏 봉사 1~2회",color:"var(--rose)"},
+  {label:"⛪ 교회 출석(일)",color:"var(--amber)"},
+  {label:"👶 손주 격주 체크",color:"var(--pink)"},
+  {label:"🍽 가족식사 격주",color:"var(--lav)"},
+  {label:"📝 감사일기 작성",color:"var(--purple)"},
+  {label:"🎯 주간 목표 달성 점검",color:"var(--gold)"},
+];
+
+const QUARTERS = [
+  {q:"Q1",period:"1~3월",color:"var(--teal)",activities:["루틴 안착·스포츠 재등록","봄 파종·전정·발아 관리"],travel:"🇰🇷 국내 (제주·남해)",learn:"영어 회화",golf:"20~25회",health:"건강검진"},
+  {q:"Q2",period:"4~6월",color:"var(--sage)",activities:["골프 시즌·봉사 프로젝트","接芯·病害蟲 예찰"],travel:"✈️ 해외 (일본·베트남)",learn:"AI 활용",golf:"25~30회",health:"체력 강화"},
+  {q:"Q3",period:"7~9월",color:"var(--gold)",activities:["배드민턴 대회·수확 준비","호두·대추 수확 전 관리"],travel:"🇰🇷 국내 (강원·경북)",learn:"투자론",golf:"20~25회",health:"근력 유지"},
+  {q:"Q4",period:"10~12월",color:"var(--sky)",activities:["연간 결산·내년 계획","수확·저장·토양 개량"],travel:"✈️ 해외 (유럽·하와이)",learn:"신앙·철학",golf:"15~20회",health:"체중 관리"},
+];
+
+const TRAVELS = [
+  {q:"Q1",m:"3월",type:"🇰🇷 국내",dest:"제주도 / 남해 봄꽃",theme:"힐링·걷기·자연",budget:"중",color:"var(--teal)"},
+  {q:"Q2",m:"6월",type:"✈️ 해외",dest:"일본 교토 / 베트남 다낭",theme:"문화·미식·휴양",budget:"중상",color:"var(--sky)"},
+  {q:"Q3",m:"9월",type:"🇰🇷 국내",dest:"강원도 / 경북 가을단풍",theme:"단풍·트레킹·온천",budget:"중",color:"var(--sage)"},
+  {q:"Q4",m:"12월",type:"✈️ 해외",dest:"유럽 포르투갈·스페인",theme:"역사·문화·와인",budget:"상",color:"var(--gold)"},
+];
+
+const BUCKETS = [
+  "골프 베스트스코어 경신 (목표: -5타)",
+  "해외 여행지 2곳 신규 개척",
+  "텃밭 수확물 이웃 나눔 행사 개최",
+  "새 악기 or 예술 분야 입문",
+  "자서전 초안 10페이지 완성",
+  "걷기 500km 누적 달성",
+  "배드민턴 동호회 대회 참가·입상",
+  "👶 손주와 특별 여행 1회 + 격주 정기 만남 정착",
+  "봉사 50시간 이상 달성·인증",
+  "포트폴리오 목표 수익률 달성",
+];
+
+const STATS = [
+  {label:"😴 수면",h:49,pct:44,color:"#5A6A80"},
+  {label:"🏃 건강·운동",h:20,pct:18,color:"#2EB89A"},
+  {label:"📈 주식·투자",h:12,pct:11,color:"#C9A84C"},
+  {label:"⛳ 취미·레저",h:20,pct:18,color:"#6BB88A"},
+  {label:"📚 배우기·성장",h:5,pct:4,color:"#4AA8E0"},
+  {label:"👶 손주·가족",h:8,pct:7,color:"#D4709A"},
+  {label:"🙏 봉사·사교",h:4,pct:4,color:"#D4706A"},
+  {label:"💤 자유·여유",h:3,pct:3,color:"#7B6FCC"},
+];
+
+const TAG_COLOR = {"✅":"var(--teal)","일부":"var(--amber)","—":"var(--dim)"};
+
+/* ══════════════════════════════════════
+   RENDER
+══════════════════════════════════════ */
+// Sheet 1 — Routine Table
+(function(){
+  const tbody = document.getElementById('routine-tbody');
+  ROUTINE_ROWS.forEach((row,i)=>{
+    const bg = i%2===0 ? '#152236' : '#1C2E46';
+    const tc = TAG_COLOR[row[4]]||'var(--dim)';
+    tbody.innerHTML += `<tr style="background:${bg}">
+      <td style="color:var(--glight);font-weight:700;font-size:11px;white-space:nowrap">${row[0]}</td>
+      <td style="color:var(--muted)">${row[1].replace(/\n/g,'<br>')}</td>
+      <td style="color:var(--muted)">${row[2].replace(/\n/g,'<br>')}</td>
+      <td style="color:var(--muted)">${row[3].replace(/\n/g,'<br>')}</td>
+      <td style="color:${tc};font-weight:700;text-align:center">${row[4]}</td>
+    </tr>`;
+  });
+})();
+
+// Sheet 1 — Stat Bars
+(function(){
+  const el = document.getElementById('stat-bars');
+  el.innerHTML = STATS.map(s=>`
+    <div class="stat-row">
+      <div class="stat-label">${s.label}</div>
+      <div class="stat-bar-wrap"><div class="stat-bar-fill" style="width:${s.pct}%;background:${s.color}"></div></div>
+      <div class="stat-h" style="color:${s.color}">${s.h}h</div>
+      <div class="stat-pct">${s.pct}%</div>
+    </div>
+  `).join('');
+})();
+
+// Sheet 2 — Daily Blocks
+let currentRoutine = 'A';
+function renderDaily(r){
+  const el = document.getElementById('daily-blocks');
+  el.innerHTML = DAILY.map((d,i)=>{
+    const data = d[r];
+    const bg = i%2===0?'rgba(21,34,54,.7)':'rgba(28,46,70,.7)';
+    return `<div class="time-block" style="background:${bg};border-color:${d.color}28">
+      <div class="t-dot" style="background:${d.color}"></div>
+      <div class="t-time">${d.t}</div>
+      <div class="t-body">
+        <div class="t-title">${data.title}</div>
+        <div class="t-desc">${data.desc}</div>
+      </div>
+      <div class="t-tag">
+        <span class="tag" style="background:${d.color}22;color:${d.color};border-color:${d.color}55">${d.tag}</span><br>
+        <span style="font-size:10px;color:var(--gold)">${d.star}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+renderDaily('A');
+
+function switchRoutine(r, btn){
+  currentRoutine = r;
+  document.querySelectorAll('.r-tab').forEach(b=>{
+    b.classList.remove('active');
+    b.style.background='transparent';
+    b.style.color='var(--muted)';
+  });
+  const colors = {A:'var(--teal)',B:'var(--sage)',C:'var(--amber)'};
+  btn.classList.add('active');
+  btn.style.background = colors[r];
+  btn.style.color = 'var(--nav1)';
+  ['A','B','C'].forEach(x=>{
+    document.getElementById(`routine-meta-${x}`).style.display = x===r?'block':'none';
+  });
+  renderDaily(r);
+}
+
+// Sheet 3 — Week Grid
+(function(){
+  const el = document.getElementById('week-grid');
+  el.innerHTML = WEEK_DATA.map(d=>`
+    <div class="week-col">
+      <div class="week-head" style="${d.sp?`background:${d.bcolor}22;border-color:${d.bcolor}40`:'background:var(--nav3)'}">
+        <div class="week-day" style="color:${d.sp?d.bcolor:'var(--glight)'}">${d.d}</div>
+        <div class="week-sub">${d.sub}</div>
+        <div style="font-size:12px;margin-top:3px">${d.badge}</div>
+      </div>
+      ${d.slots.map(s=>`<div class="week-slot" style="${s.c?`color:${s.c};background:${s.c}15;font-weight:700`:'color:var(--muted)'}">${s.t}</div>`).join('')}
+    </div>
+  `).join('');
+})();
+
+// Sheet 3 — Checklist
+let checkState = {};
+(function(){
+  const el = document.getElementById('check-grid');
+  el.innerHTML = CHECKS.map((c,i)=>`
+    <div class="check-item" onclick="toggleCheck(${i},this)">
+      <div class="check-box" style="border-color:${c.color}" id="box-${i}"></div>
+      <span id="lbl-${i}">${c.label}</span>
+    </div>
+  `).join('');
+})();
+function toggleCheck(i,el){
+  checkState[i] = !checkState[i];
+  const box = document.getElementById(`box-${i}`);
+  const lbl = document.getElementById(`lbl-${i}`);
+  if(checkState[i]){
+    box.innerHTML='✓';
+    box.style.background=CHECKS[i].color;
+    box.style.color='var(--nav1)';
+    el.classList.add('done');
+  } else {
+    box.innerHTML='';
+    box.style.background='transparent';
+    el.classList.remove('done');
+  }
+}
+
+// Sheet 4 — Quarter Grid
+(function(){
+  const el = document.getElementById('quarter-grid');
+  el.innerHTML = QUARTERS.map(q=>`
+    <div class="card" style="border-color:${q.color}40">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <span style="font-size:20px;font-weight:900;color:${q.color};font-family:'Noto Serif KR',serif">${q.q}</span>
+        <span style="font-size:12px;color:var(--muted)">${q.period}</span>
+        <span class="tag" style="margin-left:auto;background:${q.color}20;color:${q.color};border-color:${q.color}50">골프 ${q.golf}</span>
+      </div>
+      ${q.activities.map(a=>`<div style="font-size:12px;color:var(--text);padding:5px 0;border-bottom:1px solid var(--nav3);display:flex;gap:8px"><span style="color:${q.color}">▸</span>${a}</div>`).join('')}
+      <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px">
+        <div style="background:var(--nav3);border-radius:6px;padding:6px 8px"><span style="color:var(--sky)">✈️</span> ${q.travel}</div>
+        <div style="background:var(--nav3);border-radius:6px;padding:6px 8px"><span style="color:var(--sky)">📚</span> ${q.learn}</div>
+        <div style="background:var(--nav3);border-radius:6px;padding:6px 8px"><span style="color:var(--teal)">🏥</span> ${q.health}</div>
+      </div>
+    </div>
+  `).join('');
+})();
+
+// Sheet 4 — Travel
+(function(){
+  const el = document.getElementById('travel-grid');
+  el.innerHTML = TRAVELS.map(t=>`
+    <div class="travel-card" style="background:${t.color}12;border-color:${t.color}30">
+      <div class="travel-q" style="color:${t.color}">${t.q} · ${t.m}</div>
+      <div class="travel-dest">${t.dest}</div>
+      <div class="travel-tag">${t.type} · ${t.theme}</div>
+      <div class="travel-badge" style="background:${t.color}20;color:${t.color}">예산: ${t.budget}</div>
+    </div>
+  `).join('');
+})();
+
+// Sheet 4 — Bucket List
+let bucketDone = {};
+(function(){
+  const el = document.getElementById('bucket-grid');
+  el.innerHTML = BUCKETS.map((b,i)=>`
+    <div class="bucket-item" id="bucket-${i}" onclick="toggleBucket(${i})">
+      <div class="bucket-num">${i+1}</div>
+      <div style="flex:1">${b}</div>
+      <div class="bucket-check" id="bcheck-${i}">☐</div>
+    </div>
+  `).join('');
+})();
+function toggleBucket(i){
+  bucketDone[i]=!bucketDone[i];
+  const el=document.getElementById(`bucket-${i}`);
+  const ck=document.getElementById(`bcheck-${i}`);
+  if(bucketDone[i]){ck.textContent='✅';el.classList.add('done');}
+  else{ck.textContent='☐';el.classList.remove('done');}
+}
+
+/* ══════════════════════════════════════
+   TAB SWITCHING
+══════════════════════════════════════ */
+function show(id, btn){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  // animate stat bars
+  if(id==='dash'){
+    setTimeout(()=>{
+      document.querySelectorAll('.stat-bar-fill').forEach(b=>{
+        const w=b.style.width; b.style.width='0';
+        setTimeout(()=>b.style.width=w,50);
+      });
+    },50);
+  }
+}
+
+// init stat bars
+setTimeout(()=>{
+  document.querySelectorAll('.stat-bar-fill').forEach(b=>{
+    const w=b.style.width; b.style.width='0';
+    setTimeout(()=>b.style.width=w,100);
+  });
+},200);
+</script>
+</body>
+</html>
